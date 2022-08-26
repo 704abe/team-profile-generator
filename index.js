@@ -3,10 +3,10 @@ const fs = require('fs');
 const Manager = require('./manager.js');
 const Engineer = require('./engineer.js');
 const Intern = require('./intern.js');
-const path = require("path");
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "index.html");
-const template = require("./template.js")
+// const path = require("path");
+// const OUTPUT_DIR = path.resolve(__dirname, "output");
+// const outputPath = path.join(OUTPUT_DIR, "index.html");
+const template = require("./template.js");
 
 members = [];
 
@@ -139,6 +139,6 @@ function addEngineer() {
   }
 
 function generateHTML () {
-    console.log("Success!");
-    fs.writeFileSync(outputPath, template(members), "UTF-8")
+    console.log('generate');
+    fs.writeFileSync(outputPath, template(members), "UTF-8");
 }
