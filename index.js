@@ -1,14 +1,11 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const Manager = require('./manager.js');
-const Engineer = require('./engineer.js');
-const Intern = require('./intern.js');
-// const path = require("path");
-// const OUTPUT_DIR = path.resolve(__dirname, "output");
-// const outputPath = path.join(OUTPUT_DIR, "index.html");
-const template = require("./template.js");
+const Manager = require('./lib/Manager.js');
+const Engineer = require('./lib/Engineer.js');
+const Intern = require('./lib/Intern.js');
+const template = require("./src/template.js");
 
-members = [];
+const teamMembers = [];
 
 addManager();
 
@@ -41,21 +38,21 @@ function addManager() {
 
     ]).then(data => {
       const manager = new Manager(data.managerName, data.managerId, data.managerEmail, data.managerOfficeNumber);
-      members.push(manager);
-      addMember();
+      teamMembers.push(manager);
+      addTeamMember();
     });
 
   }
 
-function addMember () {
+function addTeamMember () {
     inquirer.prompt([{
         type: "list",
         message: "What role would you like to add to your team?",
-        name: "addMemberPrompt",
-        choices: ["Engineer", "Intern", "No more team members are needed."]
+        name: "addTeamMemberPrompt",
+        choices: ["Engineer", "Intern", "No more team teamMembers are needed."]
 
     }]).then(function (userInput) {
-        switch(userInput.addMemberPrompt) {
+        switch(userInput.addTeamMemberPrompt) {
             case "Engineer":
                 addEngineer();
                 break;
@@ -63,10 +60,10 @@ function addMember () {
                 addIntern();
                 break;
             default:
-                generateHTML();
+                writeToHTML();
         }
     })
-  }
+}
 
 function addEngineer() {
     inquirer.prompt([
@@ -97,8 +94,8 @@ function addEngineer() {
 
     ]).then(answers => {
       const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
-      members.push(engineer);
-      addMember();
+      teamMembers.push(engineer);
+      addTeamMember();
     });
 
   }
@@ -132,13 +129,13 @@ function addEngineer() {
 
     ]).then(answers => {
       const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
-      members.push(intern);
-      addMember();
+      teamMembers.push(intern);
+      addTeamMember();
     });
 
   }
 
-function generateHTML () {
+function writeToHTML() {
     console.log('generate');
-    fs.writeFileSync(outputPath, template(members), "UTF-8");
+    fs.writeFileSync('./dist/index.html' , template(teamMembers), "UTF-8");
 }
