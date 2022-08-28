@@ -3,7 +3,7 @@ function createManagerTemplate(manager){
           <div class="profile-box">
             <p>Name: ${manager.getName()}</p>
             <p>ID: ${manager.getId()}</p>
-            <p>Email: ${manager.getEmail()}</p>
+            <p>Email: <a href = "mailto: ${manager.getEmail()}">${manager.getEmail()}</a></p>
             <p>Office Number: ${manager.getOfficeNumber()}</p>
           </div>
   `
@@ -14,7 +14,7 @@ function createEngineerTemplate(engineer){
           <div class="profile-box">
             <p>Name: ${engineer.getName()}</p>
             <p>ID: ${engineer.getId()}</p>
-            <p>Email: ${engineer.getEmail()}</p>
+            <p>Email: <a href = "mailto: ${engineer.getEmail()}">${engineer.getEmail()}</a></p>
             <p>Github: <a href="github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></p>
           </div>
   `       
@@ -25,7 +25,7 @@ function createInternTemplate(intern){
           <div class="profile-box">
             <p>Name: ${intern.getName()}</p>
             <p>ID: ${intern.getId()}</p>
-            <p>Email: ${intern.getEmail()}</p>
+            <p>Email: <a href = "mailto: ${intern.getEmail()}">${intern.getEmail()}</a></p>
             <p>School: ${intern.getSchool()}</p>
           </div>
   `
