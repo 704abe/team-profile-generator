@@ -1,10 +1,15 @@
 function createManagerTemplate(manager){
   return `
           <div class="profile-box">
-            <p>Name: ${manager.getName()}</p>
-            <p>ID: ${manager.getId()}</p>
-            <p>Email: <a href = "mailto: ${manager.getEmail()}">${manager.getEmail()}</a></p>
-            <p>Office Number: ${manager.getOfficeNumber()}</p>
+            <div class="profile-header">
+              <p>${manager.getName()}</p>
+            </div>
+            <div class="profile-body">
+              <p class="role">${manager.getRole()}</p>
+              <p>ID: ${manager.getId()}</p>
+              <p>Email: <a href = "mailto: ${manager.getEmail()}">${manager.getEmail()}</a></p>
+              <p>Office Number: ${manager.getOfficeNumber()}</p>
+            </div>
           </div>
   `
 }
@@ -12,10 +17,15 @@ function createManagerTemplate(manager){
 function createEngineerTemplate(engineer){
   return `
           <div class="profile-box">
-            <p>Name: ${engineer.getName()}</p>
-            <p>ID: ${engineer.getId()}</p>
-            <p>Email: <a href = "mailto: ${engineer.getEmail()}">${engineer.getEmail()}</a></p>
-            <p>Github: <a href="github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></p>
+            <div class="profile-header">
+              <p>${engineer.getName()}</p>
+            </div>
+            <div class="profile-body">
+              <p class="role">${engineer.getRole()}</p>
+              <p>ID: ${engineer.getId()}</p>
+              <p>Email: <a href = "mailto: ${engineer.getEmail()}">${engineer.getEmail()}</a></p>
+              <p>Github: <a href="github.com/${engineer.getGithub()}" target="_blank">${engineer.getGithub()}</a></p>
+            </div>
           </div>
   `       
 }
@@ -23,10 +33,15 @@ function createEngineerTemplate(engineer){
 function createInternTemplate(intern){
   return `
           <div class="profile-box">
-            <p>Name: ${intern.getName()}</p>
-            <p>ID: ${intern.getId()}</p>
-            <p>Email: <a href = "mailto: ${intern.getEmail()}">${intern.getEmail()}</a></p>
-            <p>School: ${intern.getSchool()}</p>
+            <div class="profile-header">
+              <p>${intern.getName()}</p>
+            </div>
+            <div class="profile-body">
+              <p class="role">${intern.getRole()}</p>
+              <p>ID: ${intern.getId()}</p>
+              <p>Email: <a href = "mailto: ${intern.getEmail()}">${intern.getEmail()}</a></p>
+              <p>School: ${intern.getSchool()}</p>
+            </div>
           </div>
   `
 }
@@ -63,14 +78,15 @@ return `
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Team Member Profiles</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <body>
     <main>
+      <header class="page-header">
         <h1>Team Member Profiles</h1> 
-        <div class="profiles-container"> 
-          ${createTeamMemberTemplate(teamMemberArr)}
-        </div>
+      </header>
+      <div class="profiles-container"> 
+        ${createTeamMemberTemplate(teamMemberArr)}
+      </div>
     </main>
   </body>
 </html>`;
